@@ -1,17 +1,11 @@
-import mongoose from 'mongoose';
 import UserModel from '../models/user';
 import Validator from '../validators/validator';
 
 
-export const index = ((req, res) => {
-  res.json({
-    title: 'crulhas'
-  });
-});
-
 // export const getUserInfo = (async (req, res) => {
 // });
 
+// Create a new user
 export function createUser(req, res) {
   const contract = new Validator();
   contract.isRequired(req.body.cpf, 'CPF is required');
@@ -46,3 +40,24 @@ export function createUser(req, res) {
       console.error(err);
     });
 }
+// Gel all users
+export function getAllUsers(req, res) {
+  UserModel.find({}, (err, docs) => {
+    if (err) {
+      res.status(400).json({ Error: err });
+    }
+    res.status(200).json({ Users: docs });
+  });
+}
+
+// Delete Users all users
+export function deleteUser(req, res) {
+  UserModel.remove({ _id: req.params.userID }, (err) => {
+    if (!err) {
+      res.status(200).json({ User: 'User deleted!' });
+    } else {
+      res.status(200).json({ User: err });
+    }
+  });
+}
+

@@ -5,9 +5,12 @@ import express from 'express';
 import logger from 'morgan';
 import sassMiddleware from 'node-sass-middleware';
 import path from 'path';
+import database from './database';
+
 // import favicon from 'serve-favicon';
 
 import index from './routes/index';
+import users from './routes/users';
 
 const app = express();
 const debug = Debug('server:app');
@@ -30,6 +33,7 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

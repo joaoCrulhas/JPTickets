@@ -34,10 +34,10 @@ export function createUser(req, res) {
 
   user.save()
     .then((doc) => {
-      console.log(doc);
+      res.status(201).json({ Msg: doc });
     })
     .catch((err) => {
-      console.error(err);
+      res.status(400).json({ Msg: err });
     });
 }
 // Gel all users
@@ -49,7 +49,6 @@ export function getAllUsers(req, res) {
     res.status(200).json({ Users: docs });
   });
 }
-
 // Delete Users all users
 export function deleteUser(req, res) {
   UserModel.remove({ _id: req.params.userID }, (err) => {
@@ -60,4 +59,10 @@ export function deleteUser(req, res) {
     }
   });
 }
-
+// Get user info
+export function getUserInfo(req, res) {
+  UserModel.findById(req.params.userID, '-_id -__v').exec((err, doc) => {
+    if (err) res.status(400).json({ Error: err });
+    res.status(200).json(doc);
+  });
+}

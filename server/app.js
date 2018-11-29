@@ -12,6 +12,7 @@ import cors from 'cors';
 
 import index from './routes/index';
 import users from './routes/users';
+import events from './routes/events';
 
 const app = express();
 const debug = Debug('server:app');
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/events', events);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

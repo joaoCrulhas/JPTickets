@@ -1,10 +1,6 @@
 import UserModel from '../models/user';
 import Validator from '../validators/validator';
 
-
-// export const getUserInfo = (async (req, res) => {
-// });
-
 // Create a new user
 export function createUser(req, res) {
   const contract = new Validator();
@@ -61,7 +57,6 @@ export function getUserInfo(req, res) {
     return res.status(200).json(doc);
   });
 }
-
 // Update user
 export function updateUser(req, res) {
   const contract = new Validator();
@@ -77,7 +72,8 @@ export function updateUser(req, res) {
   if (!contract.isValid()) {
     return res.status(400).send(contract.errors()).end();
   }
-  const { cpf, rg, endereco, permissoesEventos, permissoesIngressos, telefone, nome, email } = req.body;
+  const { cpf, rg, endereco, permissoesEventos, permissoesIngressos,
+    telefone, nome, email } = req.body;
 
   return UserModel.findOneAndUpdate({ _id: req.params.userID },
     { cpf, rg, endereco, permissoesEventos, permissoesIngressos, telefone, nome, email },

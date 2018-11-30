@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import UsersService from '../services/UsersService';
+import EventsService from '../services/EventsService';
 
 export default {
   data () {
@@ -90,7 +90,7 @@ export default {
         this.form.ingressos = this.inputs
         this.form.atracoes  = this.atracoes
         console.log(this.form)
-        console.log(this.atracoes)
+        EventsService.createEvent(this.form)
     },
     onReset (evt) {
       evt.preventDefault();

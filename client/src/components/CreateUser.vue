@@ -23,6 +23,17 @@
         </b-form-input>
       </b-form-group>
 
+      <b-form-group id="telefone"
+                    label="Telefone:"
+                    label-for="telefone">
+        <b-form-input id="telefone"
+                      type="text"
+                      v-model="form.telefone"
+                      required
+                      placeholder="Enter telefone">
+        </b-form-input>
+      </b-form-group>
+
 
       <b-form-group id="cpf"
                     label="CPF:"
@@ -81,6 +92,8 @@
 </template>
 
 <script>
+import UsersService from '../services/UsersService';
+
 export default {
   data () {
     return {
@@ -98,8 +111,12 @@ export default {
     }
   },
   methods: {
-    onSubmit (evt) {
-      console.log(JSON.stringify(this.form));
+    async onSubmit (evt) {
+      let { data, status } = await UsersService.createUser(this.form)
+      if (status == 201) {
+        this.$store.commit('LOGIN_USER', data.doc)
+      }
+      
     },
     onReset (evt) {
       evt.preventDefault();
@@ -120,13 +137,3 @@ export default {
 }
 </script>
 
-<!-- 
-  cpf: String,
-  rg: String,
-  endereco: String,
-  permissoesEventos: [String],
-  permissoesIngressos: [String],
-  telefone: String,
-  nome: String,
-  email: String,
-b-form-1.vue -->

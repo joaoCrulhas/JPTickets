@@ -7,8 +7,8 @@ export function createUser(req, res) {
   contract.isRequired(req.body.cpf, 'CPF is required');
   contract.isRequired(req.body.rg, 'RG is required');
   contract.isRequired(req.body.endereco, 'Address is required');
-  contract.isRequired(req.body.permissoesEventos, 'Events permission is required');
-  contract.isRequired(req.body.permissoesIngressos, 'Tickets permission is required');
+  // contract.isRequired(req.body.permissoesEventos, 'Events permission is required');
+  // contract.isRequired(req.body.permissoesIngressos, 'Tickets permission is required');
   contract.isRequired(req.body.telefone, 'Phone is required');
   contract.isRequired(req.body.nome, 'Name is required');
   contract.isRequired(req.body.email, 'Email is required');
@@ -29,7 +29,7 @@ export function createUser(req, res) {
   });
 
   return user.save()
-    .then(doc => res.status(201).json({ Msg: doc }))
+    .then(doc => res.status(201).json({ doc }))
     .catch(err => res.status(400).json({ Msg: err }));
 }
 // Gel all users
@@ -63,8 +63,8 @@ export function updateUser(req, res) {
   contract.isRequired(req.body.cpf, 'CPF is required');
   contract.isRequired(req.body.rg, 'RG is required');
   contract.isRequired(req.body.endereco, 'Address is required');
-  contract.isRequired(req.body.permissoesEventos, 'Events permission is required');
-  contract.isRequired(req.body.permissoesIngressos, 'Tickets permission is required');
+  // contract.isRequired(req.body.permissoesEventos, 'Events permission is required');
+  // contract.isRequired(req.body.permissoesIngressos, 'Tickets permission is required');
   contract.isRequired(req.body.telefone, 'Phone is required');
   contract.isRequired(req.body.nome, 'Name is required');
   contract.isRequired(req.body.email, 'Email is required');

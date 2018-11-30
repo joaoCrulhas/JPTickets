@@ -3,13 +3,16 @@
 /* eslint-disable no-underscore-dangle */
 import mongoose from 'mongoose';
 
-const driver = 'mongodb://root:root123@ds119304.mlab.com:19304/jptickets';
+require('dotenv-safe').config();
+
+const driver = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds119304.mlab.com:19304/jptickets`;
 
 class Database {
   constructor() {
     this._connect();
   }
   _connect() {
+    console.log(driver);
     mongoose.connect(driver)
       .then(() => {
         console.log('Database connection successful');

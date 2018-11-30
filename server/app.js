@@ -6,7 +6,7 @@ import logger from 'morgan';
 import sassMiddleware from 'node-sass-middleware';
 import path from 'path';
 import cors from 'cors';
-
+import jwt from 'jsonwebtoken';
 import database from './database';
 
 // import favicon from 'serve-favicon';
@@ -14,6 +14,9 @@ import database from './database';
 import index from './routes/index';
 import users from './routes/users';
 import events from './routes/events';
+
+
+require('dotenv-safe').config();
 
 const app = express();
 const debug = Debug('server:app');

@@ -10,42 +10,34 @@ const urlApi = `http://127.0.0.1:3000/events`
 
 
 class EventService {
-    /**
-     * Create a new user
-     * @param {object} user
-     * @returns {String}
-     */
-    static createEvent(event) {
+        /**
+         * Create a new user
+         * @param {object} user
+         * @returns {String}
+         */
+        static createEvent(event) {
 
-        const atracoes = []
-        const ingressos = []
+            const atracoes = []
+            const ingressos = []
 
-        event.atracoes.forEach(element => {
-            atracoes.push(element.nomeatracao)
-        });
+            event.atracoes.forEach(element => {
+                atracoes.push(element.nomeatracao)
+            });
 
-        event.ingressos.forEach(element => {
-            // let objectTicket = {
-            //     nomeIngresso: element.nomeIngresso,
-            //     valorIngresso : element.valorIngresso
-            // }
-            ingressos.push(`${element.nomeIngresso}/${element.valorIngresso}`)
-        });
+            event.ingressos.forEach(element => {
+                ingressos.push(`${element.nomeIngresso}/${element.valorIngresso}`)
+            });
 
-        return axios.post(`${urlApi}`, {
-            "local" : event.local,
-            "nome": event.nome,
-            "atracoes": atracoes,
-            "ingressos": ingressos
-        })
+            return axios.post(`${urlApi}`, {
+                "local" : event.local,
+                "nome": event.nome,
+                "atracoes": atracoes,
+                "ingressos": ingressos
+            })
+        }
+        static  getEvents() {
+            return axios.get(`${urlApi}`)
+        }
     }
-    }
-
-/*
-  local: String,
-  nome: String,
-  atracoes: [String],
-  ingressos: [String],
-*/ 
 
 export default EventService

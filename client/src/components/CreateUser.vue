@@ -114,6 +114,7 @@ export default {
     async onSubmit (evt) {
       let { data, status } = await UsersService.createUser(this.form)
       if (status == 201) {
+        console.log(data.doc)
         this.$store.commit('LOGIN_USER', data.doc)
       }
       

@@ -89,7 +89,6 @@ export default {
     async onSubmit (evt) {
         this.form.ingressos = this.inputs
         this.form.atracoes  = this.atracoes
-        console.log(this.form)
         EventsService.createEvent(this.form)
     },
     onReset (evt) {

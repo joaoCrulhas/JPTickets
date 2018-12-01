@@ -18,6 +18,7 @@
             this.users = data.Users;
         }
     }
+
 </script>
 
 <style scoped>

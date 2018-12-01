@@ -15,11 +15,37 @@ class EventService {
      * @param {object} user
      * @returns {String}
      */
-    static createEvent(event){
-        console.log('Atracoes')
-        console.log(event)
-        return
+    static createEvent(event) {
+
+        const atracoes = []
+        const ingressos = []
+
+        event.atracoes.forEach(element => {
+            atracoes.push(element.nomeatracao)
+        });
+
+        event.ingressos.forEach(element => {
+            // let objectTicket = {
+            //     nomeIngresso: element.nomeIngresso,
+            //     valorIngresso : element.valorIngresso
+            // }
+            ingressos.push(`${element.nomeIngresso}/${element.valorIngresso}`)
+        });
+
+        return axios.post(`${urlApi}`, {
+            "local" : event.local,
+            "nome": event.nome,
+            "atracoes": atracoes,
+            "ingressos": ingressos
+        })
     }
-}
+    }
+
+/*
+  local: String,
+  nome: String,
+  atracoes: [String],
+  ingressos: [String],
+*/ 
 
 export default EventService
